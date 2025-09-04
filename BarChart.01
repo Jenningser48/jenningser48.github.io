@@ -1,0 +1,30 @@
+<!doctype html>
+
+<html>
+  <head>
+    <title>My First Kinetic Plot</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+
+<body>
+  <h2><em>k</em><sub>cat</sub> vs Mutant</h2>
+  <canvas id="myChart" width="400" height="200"></canvas>
+
+  <script>
+    const ctx = document.getElementById('myChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['WT', 'D102A', 'H45N'],
+        datasets: [{
+          label: 'kcat (s⁻¹)',
+          data: [150, 50, 10],
+          backgroundColor: ['rgba(75, 192, 192, 0.6)']
+        }]
+      }
+    });
+  </script>
+</body>
+</html></h1>
+  </body>
+</html>
