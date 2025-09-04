@@ -1,2 +1,2 @@
-# enzyme-kinetics-js
-Introduction to JavaScript
+# enzyme-kinetics-py
+Introduction to Python
