@@ -1,30 +1,34 @@
-<!doctype html>
+# kinetics-cleaner  (copy this whole block)
+import pandas as pd, numpy as np, matplotlib.pyplot as plt
+from scipy import stats
 
-<html>
-  <head>
-    <title>My First Kinetic Plot</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  </head>
+from io import StringIO
 
-<body>
-  <h2><em>k</em><sub>cat</sub> vs Mutant</h2>
-  <canvas id="myChart" width="400" height="200"></canvas>
+csv_text = """
+Mutant,k_cat,substrate
+WT,150,benzisoxazole
+D102A,50,benzisoxazole
+H45N,10,benzisoxazole
+WT,145,benzisothiazole
+D102A,48,benzisothiazole
+H45N,9,benzisothiazole
+"""
 
-  <script>
-    const ctx = document.getElementById('myChart').getContext('2d');
-    const myChart = new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: ['WT', 'D102A', 'H45N'],
-        datasets: [{
-          label: 'kcat (s⁻¹)',
-          data: [150, 50, 10],
-          backgroundColor: ['rgba(75, 192, 192, 0.6)']
-        }]
-      }
-    });
-  </script>
-</body>
-</html></h1>
-  </body>
-</html>
+df = pd.read_csv(StringIO(csv_text))
+
+# 2. CLEAN
+df = df.dropna(subset=['k_cat'])
+z = np.abs(stats.zscore(df['k_cat']))
+df_clean = df[z < 3]
+
+# 3. CALCULATE mean & 95 % CI
+summary = df_clean.groupby('Mutant')['k_cat'].agg(['mean','std','count'])
+summary['ci'] = 1.96 * summary['std'] / np.sqrt(summary['count'])
+
+# 4. PLOT
+plt.figure(figsize=(4,3))
+plt.bar(summary.index, summary['mean'], yerr=summary['ci'], capsize=5)
+plt.ylabel("k_cat (s⁻¹)")
+plt.title("Kinetics after outlier removal")
+plt.tight_layout()
+plt.show()
