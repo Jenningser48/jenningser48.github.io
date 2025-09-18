@@ -1,2 +1,2 @@
-# Python projects for class 
-Chem and Data science homework  
+# Python Practice
+Learning Python by using it for homework and research.  
