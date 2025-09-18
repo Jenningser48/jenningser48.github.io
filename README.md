@@ -1,2 +1,2 @@
-# Enzyme Kinetics 
-Learning Python by plotting Kinetic data.  
+# Python Practice
+Learning Python by using it for homework and research.  
