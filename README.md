@@ -1,2 +1,2 @@
-# Enzyme Kinetics 
-Learning Python by plotting Kinetic data.  
+# Python projects for class 
+Chem and Data science homework  
