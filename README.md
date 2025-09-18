@@ -1,2 +1,2 @@
-# Python Practice
-Learning Python by using it for homework and research.  
+# Notebook for Kinetics
+Learning Python by plotting kinetic data.  
