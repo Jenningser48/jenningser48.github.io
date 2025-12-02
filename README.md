@@ -1,2 +1,2 @@
 # Python Practice
-Learning Python by using it for homework and research.  
+Learning basic Python by using it for homework and research.  
